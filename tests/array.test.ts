@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("array stream", () => {
+await test("array stream", () => {
   const arrays = concat({ encoding: "array" }, (out) => {
     assert.deepEqual(out, [1, 2, 3, 4, 5, 6]);
   });

@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("buffer stream", () => {
+await test("buffer stream", () => {
   const buffers = concat((out) => {
     assert.ok(Buffer.isBuffer(out));
     assert.strictEqual(
@@ -17,7 +17,7 @@ test("buffer stream", () => {
   buffers.end();
 });
 
-test("buffer mixed writes", () => {
+await test("buffer mixed writes", () => {
   const buffers = concat((out) => {
     assert.ok(Buffer.isBuffer(out));
     assert.strictEqual(

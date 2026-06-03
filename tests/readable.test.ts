@@ -4,7 +4,7 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("stream buffering with mock readable", async () => {
+await test("stream buffering with mock readable", async () => {
   await new Promise<void>((resolve) => {
     const mockStream = new Readable({
       read() {

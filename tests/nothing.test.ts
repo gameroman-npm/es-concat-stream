@@ -3,13 +3,13 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("no callback stream", () => {
+await test("no callback stream", () => {
   const stream = concat();
   stream.write("space");
   stream.end(" cats");
 });
 
-test("no encoding set, no data", async () => {
+await test("no encoding set, no data", async () => {
   await new Promise<void>((resolve) => {
     const stream = concat((data) => {
       assert.deepEqual(data, []);
@@ -19,7 +19,7 @@ test("no encoding set, no data", async () => {
   });
 });
 
-test("encoding set to string, no data", async () => {
+await test("encoding set to string, no data", async () => {
   await new Promise<void>((resolve) => {
     const stream = concat({ encoding: "string" }, (data) => {
       assert.deepEqual(data, "");

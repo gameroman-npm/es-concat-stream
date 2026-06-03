@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("typed array stream", async () => {
+await test("typed array stream", async () => {
   await new Promise<void>((resolve) => {
     const a = new Uint8Array(5);
     a[0] = 97;
@@ -33,7 +33,7 @@ test("typed array stream", async () => {
   });
 });
 
-test("typed array from strings, buffers, and arrays", async () => {
+await test("typed array from strings, buffers, and arrays", async () => {
   await new Promise<void>((resolve) => {
     const arrays = concat({ encoding: "Uint8Array" }, (out) => {
       assert.strictEqual(typeof out.subarray, "function");

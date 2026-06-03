@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("string -> buffer stream", async () => {
+await test("string -> buffer stream", async () => {
   await new Promise<void>((resolve) => {
     const strings = concat({ encoding: "buffer" }, (out) => {
       assert.ok(Buffer.isBuffer(out));
@@ -16,7 +16,7 @@ test("string -> buffer stream", async () => {
   });
 });
 
-test("string stream", async () => {
+await test("string stream", async () => {
   await new Promise<void>((resolve) => {
     const strings = concat({ encoding: "string" }, (out) => {
       assert.strictEqual(typeof out, "string");
@@ -29,7 +29,7 @@ test("string stream", async () => {
   });
 });
 
-test("end chunk", async () => {
+await test("end chunk", async () => {
   await new Promise<void>((resolve) => {
     const endchunk = concat({ encoding: "string" }, (out) => {
       assert.strictEqual(out, "this is the end");
@@ -41,7 +41,7 @@ test("end chunk", async () => {
   });
 });
 
-test("string from mixed write encodings", async () => {
+await test("string from mixed write encodings", async () => {
   await new Promise<void>((resolve) => {
     const strings = concat({ encoding: "string" }, (out) => {
       assert.strictEqual(typeof out, "string");
@@ -60,7 +60,7 @@ test("string from mixed write encodings", async () => {
   });
 });
 
-test("string from buffers with multibyte characters", async () => {
+await test("string from buffers with multibyte characters", async () => {
   await new Promise<void>((resolve) => {
     const strings = concat({ encoding: "string" }, (out) => {
       assert.strictEqual(typeof out, "string");
@@ -76,7 +76,7 @@ test("string from buffers with multibyte characters", async () => {
   });
 });
 
-test("string infer encoding with empty string chunk", async () => {
+await test("string infer encoding with empty string chunk", async () => {
   await new Promise<void>((resolve) => {
     const strings = concat((out) => {
       assert.strictEqual(typeof out, "string");
@@ -90,7 +90,7 @@ test("string infer encoding with empty string chunk", async () => {
   });
 });
 
-test("to string numbers", async () => {
+await test("to string numbers", async () => {
   await new Promise<void>((resolve) => {
     const write = concat((str) => {
       assert.strictEqual(str, "a1000");

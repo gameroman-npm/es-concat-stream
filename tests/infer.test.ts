@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import concat from "es-concat-stream";
 
-test("type inference works as expected", () => {
+await test("type inference works as expected", () => {
   const stream = concat();
 
   assert.strictEqual(stream.inferEncoding(["hello"]), "array");
