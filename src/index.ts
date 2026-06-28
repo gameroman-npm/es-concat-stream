@@ -25,14 +25,13 @@ class ConcatStream extends Writable {
     if (!encoding) {
       shouldInferEncoding = true;
     } else {
-      // @ts-expect-error
-      encoding = String(encoding).toLowerCase();
+      encoding = encoding.toLowerCase() as typeof encoding;
       if (encoding === "u8" || encoding === "uint8") {
         encoding = "uint8array";
       }
     }
 
-    this.encoding = encoding as InferredEncoding;
+    this.encoding = encoding;
     this.shouldInferEncoding = shouldInferEncoding;
     this.body = [];
 
@@ -88,7 +87,7 @@ function isBufferish(p: unknown) {
   );
 }
 
-function stringConcat(parts: string[]) {
+function stringConcat(parts: string[]): string {
   const strings = [];
 
   for (const p of parts) {
